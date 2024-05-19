@@ -1,3 +1,6 @@
 docs-api
 **.zip
-/models-ai/emails/
+/models-ai/emails/Ada*
+/models-ai/emails/Decis*
+/models-ai/emails/Logist*
+/models-ai/emails/Random*
