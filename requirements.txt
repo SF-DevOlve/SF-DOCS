@@ -1,0 +1,37 @@
+# frontend
+streamlit
+
+# backend
+pandas
+numpy
+matplotlib
+scikit-learn==1.2.2
+joblib
+fastapi
+uvicorn
+np
+requests
+tensorflow
+
+
+## Voice 
+
+# pymysql>=1.1.0
+pyttsx3==2.90
+speechrecognition==3.10.0
+pydub==0.25.1
+cryptography>=3.4.8
+
+
+# LangChain and LLM
+langchain
+PyPDF2
+pypdf
+vertexai 
+langchain_google_genai
+
+PyMuPDF
+
+# envirement
+
+python-dotenv
