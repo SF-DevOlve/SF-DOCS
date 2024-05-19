@@ -75,13 +75,7 @@ models : list = [
     # joblib.load('models/emails/SGDClassifier.joblib'),
 ]
 
-models_n:list = [
-    joblib.load('models-ai/emails/AdaBoostClassifier.joblib'),
-    joblib.load('models-ai/emails/BernoulliNBClassifier.joblib'),
-    joblib.load('models-ai/emails/ComplementNBClassifier.joblib'),
-    joblib.load('models-ai/emails/RandomForestClassifier.joblib'),
-    joblib.load('models-ai/emails/SGDClassifier.joblib')
-]
+
 
 def predict_email_body_phishing(data, models=models):
   predictions = []
