@@ -168,6 +168,34 @@ def predict_url_phishing(url):
     # Return the key with the maximum count
     return 0 if int(most_common_key)==1 else 1
 
+
+def predict_url_phishing_from_models(url):
+    numerical_values = get_url(url)
+    rf_model = joblib.load('models-ai/urlss/Classifier_RandomForest.joblib')
+    decision_tree_model = joblib.load('models-ai/urlss/DecisionTreeClassifier.joblib')
+    knn_model = joblib.load('models-ai/urlss/KNeighborsClassifier.joblib')
+    ann_model = load_model('models-ai/urlss/ANNClassifier.h5')
+    predictions:list = [
+        int(rf_model.predict(np.array(list(numerical_values.values())).reshape(1, -1))[0]),
+        int(decision_tree_model.predict(np.array(list(numerical_values.values())).reshape(1, -1))[0]),
+        int(knn_model.predict(np.array(list(numerical_values.values())).reshape(1, -1))[0]),
+        int(ann_model.predict(np.array(list(numerical_values.values())).reshape(1, -1))[0][0])
+    ]
+    prediction_counts = Counter(list(predictions))
+    # Handle potential ties for the most frequent prediction
+    # Get the most common key (the key with the maximum count)
+    most_common_key = prediction_counts.most_common(1)[0][0]
+
+
+    return {
+        "phishing": 0 if int(most_common_key)==1 else 1,
+        "Random Forest": 0 if predictions[0]==1 else 1,
+        "Decision Tree": 0 if predictions[1]==1 else 1,
+        "K Nearest Neighbors": 0 if predictions[2]==1 else 1,
+        "Artificial Neural Network": 0 if predictions[3]==1 else 1
+    }
+
+
 if __name__ == "__main__":
     print(predict_url_phishing("super1000.info/docs"))
 

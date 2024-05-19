@@ -29,7 +29,7 @@ PyPDF2
 pypdf
 vertexai 
 langchain_google_genai
-
+langchain_community
 PyMuPDF
 
 # envirement

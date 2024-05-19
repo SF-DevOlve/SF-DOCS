@@ -101,6 +101,29 @@ def predict_email_body_phishing(data, models=models):
   # Return the key with the maximum count
   return 0 if int(most_common_key)==1 else 1
 
+def predict_email_body_phishing_from_models(data, models=models):
+    predictions = []
+    vectorizer = joblib.load('models-ai/emails/tfidf_vectorizer.joblib')
+    for idx,model in enumerate(models):
+        if idx <3:
+            predictions.append(model.predict(vectorizer.transform(data))[0])
+        else:
+            pass
+    
+    
+    # Count occurrences of each prediction (works for classification and regression)
+    prediction_counts = Counter(list(predictions))
+    # Handle potential ties for the most frequent prediction
+    most_common_key = prediction_counts.most_common(1)[0][0]
+    
+    # Return the key with the maximum count
+    return {
+        "phishing": 0 if int(most_common_key)==1 else 1,
+        "Complement NB": 0 if predictions[0]==1 else 1,
+        "Multinomial NB": 0 if predictions[1]==1 else 1,
+        "Bernoulli NB": 0 if predictions[2]==1 else 1
+    }
+
 
 def check_email_domain(email):
     try:
