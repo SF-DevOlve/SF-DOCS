@@ -1,6 +1,5 @@
 docs-api
 **.zip
 /models-ai/emails/
-/models-ai/urlss/Classifier*
 /models-ai/urlss/Decision*
 /models-ai/urlss/KNeighbors*
